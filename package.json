@@ -1,0 +1,35 @@
+{
+  "name": "namastereact",
+  "version": "1.0.0",
+  "description": "This is namaste react by Praveen",
+  "main": "App.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PraveenFrancis/namaste-react.git"
+  },
+  "keywords": [
+    "react",
+    "namste",
+    "react",
+    "Praveen"
+  ],
+  "author": "Praveen Francis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PraveenFrancis/namaste-react/issues"
+  },
+  "homepage": "https://github.com/PraveenFrancis/namaste-react#readme",
+  "devDependencies": {
+    "parcel": "^2.11.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

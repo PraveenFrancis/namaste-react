@@ -1,5 +1,5 @@
 const RestaurantCard = (props) => {
-    const { name, imageId } = props.resData.card.info;
+    const { name, imageId, avgRating, deliveryTime } = props.resData.data;
     console.log(props);
     return (
       <div className="res-card">
@@ -10,8 +10,8 @@ const RestaurantCard = (props) => {
           }
         />
         <p>{name}</p>
-        <p>4.4 stars</p>
-        <p>38 minutes</p>
+        <p>{avgRating} stars</p>
+        <p>{deliveryTime} minutes</p>
       </div>
     );
   };

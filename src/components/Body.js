@@ -1,59 +1,34 @@
 import RestaurantCard from "./RestaurantCard";
 import cardData from "../utils/mockdata";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 const Body = () => {
-  const [listOfRestaurents, setListOfRestaurents] = useState([
-    {
-      data: {
-        id: "333",
-        name: "Bucket Biriyani With Chicken Kabab",
-        costForTwo: 4000,
-        avgRating: "4.1",
-        imageId: "vgmmxxdnxv06pjgf3ksw",
-        deliveryTime: 36,
-      },
-    },
-    {
-      data: {
-        id: "334",
-        name: "Chilly",
-        costForTwo: 4000,
-        avgRating: "4",
-        imageId: "icpycagtwmqflonmjud8",
-        deliveryTime: 36,
-      },
-    },
-    {
-      data: {
-        id: "335",
-        name: "Gobi Manchurian (Qtr)",
-        costForTwo: 4000,
-        avgRating: "3.4",
-        imageId: "kmz6vppi99urueddhba4",
-        deliveryTime: 36,
-      },
-    },
-    {
-      data: {
-        id: "336",
-        name: "Kfc",
-        costForTwo: 4000,
-        avgRating: "3.9",
-        imageId: "mwjxnsys86a5apetncxm",
-        deliveryTime: 36,
-      },
-    },
-  ])
-  // const listOfRestaurents = 
-  return (
+  const [listOfRestaurents, setListOfRestaurents] = useState([]);
+
+  useEffect(() => {
+    fetachData();
+  }, []);
+
+  const fetachData = async() => {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.91850&lng=76.25580&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const json = await data.json();
+    setListOfRestaurents(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+  }
+
+
+ 
+  return listOfRestaurents.length === 0? <Shimmer></Shimmer> :  (
     <div>
       <div className="filter">
-        <button onClick={ () => {
-          const filteredArray = listOfRestaurents.filter( (item) => {
-            return item.data.avgRating > 4
-          });
-          setListOfRestaurents(filteredArray)
-        }}>
+        <button
+          onClick={() => {
+            const filteredArray = listOfRestaurents.filter((item) => {
+              return item.info.avgRating > 4.4;
+            });
+            setListOfRestaurents(filteredArray);
+          }}
+        >
           Top Rated Restaurents
         </button>
       </div>

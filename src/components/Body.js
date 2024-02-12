@@ -3,17 +3,20 @@ import cardData from "../utils/mockdata";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { RESTAURANT_API} from "../utils/constants"
+import useOnlineStatus from "./useOnlineStatus";
 const Body = () => {
   const [listOfRestaurents, setListOfRestaurents] = useState([]);
   const [searchText, setSearchVal] = useState("");
   const [filterRest, setFilterVal] = useState([]);
+  const onlineStatus = useOnlineStatus()
   useEffect(() => {
     fetachData();
   }, []);
 
   const fetachData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.9816358&lng=76.2998842&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      RESTAURANT_API
     );
     const json = await data.json();
     setListOfRestaurents(
@@ -30,6 +33,8 @@ const Body = () => {
     );
     setFilterVal(filterdSearchArray);
   };
+
+  if(!onlineStatus) return( <div>you are offline, please trun on your internet</div>)
   return listOfRestaurents.length === 0 ? (
     <Shimmer></Shimmer>
   ) : (

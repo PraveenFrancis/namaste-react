@@ -39,8 +39,8 @@ const Body = () => {
     <Shimmer></Shimmer>
   ) : (
     <div>
-      <div className="filter">
-        <div className="search">
+      <div className="flex my-2">
+        <div className=" mr-2">
           <input
             type="text"
             onChange={(e) => {
@@ -68,7 +68,7 @@ const Body = () => {
           Top Rated Restaurents
         </button>
       </div>
-      <div className="res-card-container">
+      <div className="flex flex-wrap gap-1">
         {filterRest.map((restorent) => {
           return <Link to={"restaurants/" + restorent.info.id} key={restorent.info.id}><RestaurantCard resData={restorent} /></Link>;
         })}

@@ -14,8 +14,8 @@ const Header = () => {
           alt="res-logo"
         />
       </div>
-      <div className="nav-items">
-        <ul className="flex justify-between">
+      <div className="nav-items flex justify-center">
+        <ul className="flex justify-between items-center">
           <li className="px-4">Online Status: {onlineStatus ? "🟢" : "🔴"}</li>
           <li className="px-4">
             <Link to="/">Home</Link>

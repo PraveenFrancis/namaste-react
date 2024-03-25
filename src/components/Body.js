@@ -68,7 +68,7 @@ const Body = () => {
           Top Rated Restaurents
         </button>
       </div>
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap gap-1 h-40">
         {filterRest.map((restorent) => {
           return <Link to={"restaurants/" + restorent.info.id} key={restorent.info.id}><RestaurantCard resData={restorent} /></Link>;
         })}
